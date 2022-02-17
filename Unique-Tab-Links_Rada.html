@@ -1,0 +1,63 @@
+<!--- Open a Tab Toggle with a Unique URL --->
+<script>
+	function _setTab(){
+		// get current hash value
+		var curHash = window.location.hash.substr(1);
+		// only continue if hash provided and scoped to member tabs
+		if( !curHash || !curHash.match('tabs') ){ return false; }
+
+		// split and int val tab num
+		curHash = parseInt(curHash.split('|')[1]);
+
+		// ignore if tab is current state
+		if( curHash === window._tabSelected ){ return false; }
+		// set current tab to window
+		window._tabSelected = curHash;
+
+		// add click event to tab selected
+		switch(curHash){
+			case 0:
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				jQuery('#tabs .et_pb_tab_'+curHash+' a').click();
+			break;
+
+			default:
+				return false;
+			break;
+		}
+
+		// scroll to tabs container
+		_scrollToTabs();
+	}
+
+	// scroll to member tabs container with 50px offset
+	function _scrollToTabs(){
+		var oTabs = jQuery('#tabs');
+		if( oTabs.length > 0 ){
+			jQuery('html,body').animate({
+				scrollTop: (oTabs.offset().top - 150)
+			}, 1000);
+		}
+		return false;
+	}
+
+	// set falsey state for tab selected on load
+	window._tabSelected = false;
+
+	// Attach to window load because the tabs initialized later
+	jQuery(window).on('load', function(){
+		// check for initial hash state
+		_setTab();
+
+		// add hash change window listener
+		jQuery(window).on('hashchange', function(){
+			_setTab()
+		});
+
+	});
+</script>
+<!--- END: Open a Tab Toggle with a Unique URL --->
