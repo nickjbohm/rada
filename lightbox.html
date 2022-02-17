@@ -1,0 +1,122 @@
+<script>
+$(function() {
+    $(".item").click(function(e) {
+        //Cancel the link behavior
+        e.preventDefault();
+        //Get Dialog Object
+        var $dialog = $("#dialog");
+        //Get the screen height and width
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+        //Set heigth and width to mask to fill up the whole screen
+
+        //transition effect
+        // $('#mask').fadeIn(1000);
+        //$('#mask').fadeTo("slow", 0.8);
+        //Get the window height and width
+        var winH = $(window).height();
+        var winW = $(window).width();
+        //Set the popup window to center
+        $dialog.css('top', winH / 2 - $dialog.height() / 2);
+        $dialog.css('left', winW / 2 - $dialog.width() / 2);
+        //Set Message
+        var MSG = $(this).find(".postname").text().trim() + " " + $(this).find(".decs").text().trim();
+        $dialog.find("#msg").html(MSG);
+        //transition effect
+        $dialog.fadeIn(20);
+
+    });
+    //if close button is clicked
+    $('.window .close').click(function(e) {
+        //Cancel the link behavior
+        e.preventDefault();
+        $('#mask').hide();
+        $('.window').hide();
+    });
+    //if mask is clicked
+    $('#mask').click(function() {
+        $(this).hide();
+        $('.window').hide();
+    });
+
+});
+</script>
+<style>
+a{
+  color:#FFF;
+  text-decoration:none
+}
+a:hover{
+  color:#FFF;
+  text-decoration:none
+}
+#message {
+background:#e4eff9;
+  padding: 0 15px 15px 15px;
+}
+#boxes #dialog{
+  padding:0px;
+  width:475px;
+  height:700px;
+  border: 15px solid #FFF;
+  background-color:#FFF;
+  display:none;
+  position:absolute;
+  z-index:99999;
+  box-shadow: 5px 5px 10px 0px rgb(0 0 0 / 15%);
+}
+#dialog #title{
+  margin:0px;
+}
+#dialog .close{
+  display:block;
+  float:center;
+  background:#0a4576;
+  width:300px;
+  text-align:center;
+  font-size:16px;
+}
+#dialog .close:hover{
+  background:#539ab7
+}
+.item {
+  color:#000;
+  margin: 10px;
+  padding:20px;
+  box-shadow: 5px 5px 10px 0px rgb(0 0 0 / 15%);
+}
+#mask{
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  opacity:0.5;
+}
+</style>
+<div id="panel">
+  <div class="item">
+    <span class="postname">Why Rada </span>
+  </div>
+</div>
+
+<!-- Dialog Box -->
+<div id="boxes">
+  <div id="dialog" class="window">
+    <img src="https://via.placeholder.com/500x200" style="max-width:100%">
+    <div id="message">
+      <div id="title"><h1>Generations of Devoted Fans</h1></div>
+    <div>
+      <p><b>LONGTIME FANS OF RADA KNOW THIS:</b> they wouldn’t dream of stocking their kitchens with anything but Rada products. And not just because their grandmas and moms used Rada too, but because they know Rada offers the best knives at the best value. <b>Remarkable products at a phenomenal value. That’s the Rada way</b></p>
+      <p><b>SINCE 1948 AND MORE THAN 180 MILLION KNIVES LATER</b>, we’re proud to say we still manufacture in the heart of the USA. Every product is 100% made in the USA, with materials only from America. We believe so strongly in our high-quality craftsmanship that everything we manufacture carries our lifetime guarantee!</p>
+      <p><b>YEAR AFTER YEAR AND GENERATION AFTER GENERATION</b>, we welcome new Rada users into the circle of admirers. Simply read through any of our product reviews and you’ll see it for yourself: customers are excited to leave 5-star reviews. And if you’ve never used one of Rada’s supersharp knives, now’s your chance to find out what the hype is all about… and then tell your neighbor about these great new knives you discovered.</p>
+      <h4><i>“Once you own a Rada, nothing else will do.” – Pam D.</i></h4>
+     </div>
+  </div>
+     <a href="#"class="close"/>Continue Shopping</a>
+  </div>
+</div>
+
+<!-- Mask to cover the whole screen -->
+<div id="mask">
+</div>
